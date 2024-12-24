@@ -11,6 +11,8 @@ export default class LoginPage extends Component {
   }
 
   render() {
+    const { history } = this.props;
+
     return (
       <div>
         <Link to="/">
@@ -18,7 +20,7 @@ export default class LoginPage extends Component {
           home
         </Link>
         <div className="container">
-          <Login></Login>
+          <Login history={history}></Login>
         </div>
       </div>
     );

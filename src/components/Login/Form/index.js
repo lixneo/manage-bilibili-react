@@ -7,9 +7,12 @@ import Title from "./Title";
 
 export default class Form extends Component {
   render() {
-    return <div className="form-wrapper">
-      <Title/>
-      <LoginForm/>
-    </div>;
+    const { history } = this.props;
+    return (
+      <div className="form-wrapper">
+        <Title />
+        <LoginForm history={history} />
+      </div>
+    );
   }
 }

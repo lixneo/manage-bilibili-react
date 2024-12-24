@@ -14,15 +14,15 @@ export default class Login extends Component {
   }
 
   componentDidMount() {
-    this.getCourseData();
-    
+    // this.getCourseData();
   }
 
   render() {
+    const { history } = this.props;
     return (
       <div className="login-container">
         <Logo />
-        <Form />
+        <Form history={history} />
       </div>
     );
   }
