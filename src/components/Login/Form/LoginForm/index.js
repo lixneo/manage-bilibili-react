@@ -16,6 +16,16 @@ export default class LoginForm extends Component {
     };
   }
 
+  async loginCheck() {
+    const result = await loginService.loginCheck();
+    const errorCode = result.code;
+
+    if (errorCode === 1007) {
+      const { history } = this.props;
+      history.push("/");
+    }
+  }
+
   onInputTyping(e) {
     const id = e.target.id,
       val = e.target.value;
@@ -49,6 +59,10 @@ export default class LoginForm extends Component {
 
     const { history } = this.props;
     history.push("/");
+  }
+
+  componentDidMount() {
+    this.loginCheck();
   }
 
   render() {

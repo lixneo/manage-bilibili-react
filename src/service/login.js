@@ -11,8 +11,32 @@ export default class LoginService extends HTTP {
           resolve(res);
         },
         error: (err) => {
-          alert("网络请求失败");
-          // window.location.reload();
+          reject(err);
+        },
+      });
+    });
+  }
+  logout() {
+    return new Promise((resolve, reject) => {
+      this.axiosPost({
+        url: API.LOGOUT,
+        success: (res) => {
+          resolve(res);
+        },
+        error: (err) => {
+          reject(err);
+        },
+      });
+    });
+  }
+  loginCheck() {
+    return new Promise((resolve, reject) => {
+      this.axiosPost({
+        url: API.LOGIN_CHECK,
+        success: (res) => {
+          resolve(res);
+        },
+        error: (err) => {
           reject(err);
         },
       });
