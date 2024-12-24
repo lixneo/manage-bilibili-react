@@ -7,6 +7,7 @@ export default class HTTP {
       method: "post",
       url: option.url,
       data: qs.stringify(option.data),
+      withCredentials: true,
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
       },
@@ -22,6 +23,7 @@ export default class HTTP {
     return axios({
       method: "get",
       url: option.url,
+      withCredentials: true,
       params: option.data,
     })
       .then((res) => {
@@ -31,4 +33,4 @@ export default class HTTP {
         option.error(err);
       });
   }
-};
+}
