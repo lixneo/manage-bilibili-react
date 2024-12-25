@@ -1,0 +1,10 @@
+.logout {
+  cursor: pointer;
+  color: black;
+  font-size: 16px;
+  line-height: 60px;
+  float: right;
+  &:hover {
+    text-decoration: underline;
+  }
+}

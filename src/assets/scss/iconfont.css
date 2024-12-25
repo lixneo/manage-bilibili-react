@@ -24,3 +24,7 @@
 .icon-home:before {
   content: "\e602";
 }
+
+.icon-right:before {
+  content: "\e61b";
+}

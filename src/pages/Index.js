@@ -1,8 +1,10 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import LoginService from "../service/login";
 import Header from "../components/index/header";
+import Sidebar from "../components/index/sidebar";
+import Container from "../components/index/container";
+import { NAV } from "../config/config";
 
+import LoginService from "../service/login";
 const loginService = new LoginService();
 
 export default class IndexPage extends Component {
@@ -10,31 +12,32 @@ export default class IndexPage extends Component {
     super(props);
 
     this.state = {
-      title: "index",
+      curIdx: 0,
+      field: NAV[0].field,
+      title: NAV[0].title,
     };
   }
 
   async loginCheck() {
     const result = await loginService.loginCheck();
-    const errorCode = result.code;
+    const errorCode = result.code,
+      { history } = this.props;
 
     if (errorCode === 1006) {
-      const { history } = this.props;
       history.push("/login");
+      return;
     }
+    history.push("/course");
   }
 
-  onLogoutClick() { 
-    const cfm = window.confirm("确定要退出登录吗？");
+  onNavItemClick(dataItem, index) {
+    const { field, title } = dataItem;
 
-    if (cfm) {
-      const result = loginService.logout();
-      const errorCode = result.code;
-      if (errorCode === 0) {
-        const { history } = this.props;
-        history.push("/login");
-      }
-    }
+    this.setState({
+      field,
+      title,
+      curIdx: index,
+    });
   }
 
   componentDidMount() {
@@ -42,26 +45,16 @@ export default class IndexPage extends Component {
   }
 
   render() {
-    const { children } = this.props;
+    const { history, children } = this.props;
+    const { curIdx } = this.state;
     return (
       <div className="container">
-        <Header />
-        {/* <h1>{this.state.title} page</h1>
-        <ul>
-          <li>
-            <Link to="/sub/list">list</Link>
-          </li>
-          <li>
-            <Link to="/sub/detail">detail</Link>
-          </li>
-          <li>
-            <Link to="/login">login</Link>
-          </li>
-          <li>
-            <button onClick={() => this.onLogoutClick()}>退出登录</button>
-          </li>
-        </ul>
-        {children} */}
+        <Header history={history} />
+        <Sidebar
+          curIdx={curIdx}
+          onNavItemClick={this.onNavItemClick.bind(this)}
+        />
+        <Container children={children} />
       </div>
     );
   }
