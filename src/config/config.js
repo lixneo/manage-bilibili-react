@@ -1,9 +1,14 @@
 const BASE_URL = "http://localhost:4000";
 
 const API = {
-  LOGIN: `${BASE_URL}/login`,
-  LOGOUT: `${BASE_URL}/logout`,
-  LOGIN_CHECK: `${BASE_URL}/login_check`,
+  ADMIN: {
+    LOGIN: `${BASE_URL}/login`,
+    LOGOUT: `${BASE_URL}/logout`,
+    LOGIN_CHECK: `${BASE_URL}/login_check`,
+  },
+  COURSE:{
+    GET_COURSES: `${BASE_URL}/get_courses`,
+  }
 };
 
 const NAV = [

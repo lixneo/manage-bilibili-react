@@ -1,15 +1,17 @@
 import axios from "axios";
-import qs from "qs";
+// import qs from "qs";
 
 export default class HTTP {
   axiosPost(option) {
     return axios({
       method: "post",
       url: option.url,
-      data: qs.stringify(option.data),
+      // data: qs.stringify(option.data),
+      data: option.data,
       withCredentials: true,
       headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
+        // "Content-Type": "application/x-www-form-urlencoded",
+        "Content-Type": "application/json",
       },
     })
       .then((res) => {

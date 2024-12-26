@@ -1,13 +1,12 @@
 import HTTP from "../utils/http";
 import { API } from "../config/config";
-const ADMIN = API.ADMIN
+const COURSE = API.COURSE
 
-export default class LoginService extends HTTP {
-  login(userInf) {
+export default class CourseService extends HTTP {
+  getCourseData() {
     return new Promise((resolve, reject) => {
-      this.axiosPost({
-        url: ADMIN.LOGIN,
-        data: userInf,
+      this.axiosGet({
+        url: COURSE.GET_COURSES,
         success: (res) => {
           resolve(res);
         },
@@ -17,23 +16,11 @@ export default class LoginService extends HTTP {
       });
     });
   }
-  logout() {
+  postDataDemo(data) {
     return new Promise((resolve, reject) => {
       this.axiosPost({
-        url: ADMIN.LOGOUT,
-        success: (res) => {
-          resolve(res);
-        },
-        error: (err) => {
-          reject(err);
-        },
-      });
-    });
-  }
-  loginCheck() {
-    return new Promise((resolve, reject) => {
-      this.axiosPost({
-        url: ADMIN.LOGIN_CHECK,
+        url: "http://localhost:4000/post_data_demo",
+        data: data,
         success: (res) => {
           resolve(res);
         },
